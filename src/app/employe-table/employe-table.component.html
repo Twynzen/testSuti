@@ -1,0 +1,36 @@
+<div class="search">
+  <input type="text" placeholder="Buscar por nombre" [(ngModel)]="searchTerm" (ngModelChange)="onSearch()">
+</div>
+
+<div class="buttons">
+  <button [class.active]="sortByName" (click)="sortByByName()">Ordenar por Nombre</button>
+  <button [class.active]="sortByID" (click)="sortByByID()">Ordenar por ID</button>
+</div>
+
+<table class="employee-table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>Gender</th>
+      <th>Date In</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let employee of filteredEmployees">
+      <td>{{ employee.id }}</td>
+      <td>{{ employee.first_name }}</td>
+      <td>{{ employee.last_name }}</td>
+      <td>{{ employee.email }}</td>
+      <td>{{ employee.gender }}</td>
+      <td>{{ employee.date_in }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="pagination">
+  <button [disabled]="currentPage === 1" (click)="previousPage()">Anterior</button>
+  <button [disabled]="!hasNextPage()" (click)="nextPage()">Siguiente</button>
+</div>
